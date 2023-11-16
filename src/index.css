@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+:root {
+  --main-color: #f4f7f8;
+  --background-color: #225461;
+}
+
+body {
+  color: var(--main-color);
+  background-color: var(--background-color);
+  width: 100vw;
+  height: 100vh;
+  /* border: 1px solid rebeccapurple; */
+}
