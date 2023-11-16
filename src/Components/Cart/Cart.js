@@ -1,36 +1,19 @@
-import classes from './Cart.module.css'
-import Modal from '../UI/Modal'
+import React from 'react';
+import Modal from '../../UI/Modal';
+import ReactDOM from 'react-dom'
+import './Cart.css'
 
-import CartItem from './CartItem';
-import useMedicine from '../../Contexts/MedicineContext';
-export default function Cart(props) {
-  const cartCtx = useMedicine();
-  // console.log("cartctxf", cartCtx);
-  console.log("this is the item ",cartCtx.totalAmount)
-  const totalAmount = `${Number(cartCtx.totalAmount).toFixed(2)}`;
-  const hasItem = cartCtx.medicines.length > 0;
-
-  const cartItems = (
-  <ul className={classes['cart-items']}>
-    {cartCtx.medicines.map((item)=>(
-      <CartItem 
-      key = {item.id} 
-      name={item.medicineName} 
-      amount={item.amount} 
-      price={item.price} 
-     />
-    ))}
-  </ul>)
+const BackDrop = (props)=>{
+  return <div className='backDrop' onClick={()=>props.onClose()}/>
+}
+function Cart(props){
+  const portalElement = document.getElementById('overlays')
   return (
-    <Modal onClose={props.onClose}>
-      {cartItems}
-    <div className={classes.total}>
-      <span>Total Amount</span>
-      <span>₹{totalAmount}</span>
-    </div>
-    <div className={classes.actions}>
-      <button className={classes.button} onClick={props.onClose}>Close</button>
-    { hasItem &&  <button className={classes["button--alt"]}>Order</button>}</div>
-    </Modal>
+    <>
+      {ReactDOM.createPortal(<BackDrop onClose ={props.onClose}/>,portalElement)}
+      {ReactDOM.createPortal(<Modal onClose={props.onClose}/>,portalElement)}
+    </>
   )
 }
+
+export default Cart

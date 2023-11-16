@@ -1,0 +1,67 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  /* animation: slide-down 300ms ease-out forwards; */
+  color: black;
+  padding: 10px;
+}
+.modal ul {
+  list-style: none;
+  padding: 10px;
+}
+.modal ul li {
+  border-bottom: 1px solid purple;
+}
+.top {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  padding-right: 10px;
+}
+.bottom {
+  padding-right: 10px;
+}
+.totalPrice {
+  /* border: 1px solid orange; */
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0px 20px;
+}
+.buttons {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.buttons button {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 30px;
+}
+.closeBtn {
+  border: 2px solid blue;
+  color: blue;
+  transition: background-color 0.5s;
+
+}
+.closeBtn:hover {
+  background-color: blue;
+  color: white;
+
+}
+.orderBtn {
+  background-color: blue;
+  border: none;
+  color: white;
+}
