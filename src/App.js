@@ -1,36 +1,35 @@
+import Input from "./Components/Input/Input";
 
-import { useState } from 'react';
-import './App.css';
-import Input from './Components/Input/Input';
-import { MedicineProvider } from './Contexts/MedicineContext';
-import Cart from './Components/Cart/Cart'
-import Header from './Components/Layout/Header'
-import Medicine from './Components/DisplayMedicine/Medicine';
+import DisplayMedicines from "./Components/DisplayMedicine/DisplayMedicines";
+import MedicineProvider from "./Context/MedicineContext";
+import { useState } from "react";
+import CartButton from "./Components/CartButton/CartButton";
+import Cart from "./Components/Cart/Cart";
 
 function App() {
-  const [cartIsShown , setCartIsShown] = useState(false);
+  const [medicines, setMedicines] = useState([]);
+  const [showCart , setShowCart] = useState(false);
 
-  
-  // const[length , setLength]=useState(1);
-  const showCartHandler = ()=>{
-    setCartIsShown(true);
+  const onShowCart = ()=>{
+    setShowCart(true);
   }
-  const hideCartHandler = ()=>{
-    setCartIsShown(false);
+  const onHideCart = ()=>{
+    setShowCart(false);
   }
-  // const handleInput = ({name ,dsc , price})=>{
-  //   setMedicineName(name);
-  //   setDsc(dsc);
-  //   setPrice(price);
-  // }
+
+  const addMedicine = (medicine) => {
+    setMedicines((prevMedicines) => {
+      return prevMedicines.concat(medicine);
+    });
+  };
 
   return (
-      <MedicineProvider>
-             {cartIsShown && <Cart onClose={hideCartHandler}/>}
-             <Header onShowCart = {showCartHandler}/>
-      <Input  />
-      <Medicine/>
-      </MedicineProvider>
+    <MedicineProvider>
+      <CartButton onShowCart={onShowCart} />
+      {showCart && <Cart onClose={onHideCart} />}
+      <Input addMedicine={addMedicine} />
+      <DisplayMedicines medicines={medicines} />
+    </MedicineProvider>
   );
 }
 
