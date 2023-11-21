@@ -1,9 +1,9 @@
 import React from "react";
 import "./Modal.css";
-import { useMedicine } from "../Context/MedicineContext";
+import { useMedicine } from "../Context/CartMedicinesContext";
 function Modal(props) {
 
-  const { medicines, totalPrice } = useMedicine();
+  const {medicines, totalPrice ,removeMedicine ,orderPlaced} = useMedicine();
        Number(totalPrice).toFixed(2);
   return (
     <div className="modal">
@@ -12,12 +12,16 @@ function Modal(props) {
           <li key={medicine.id}>
             {console.log(medicine.id)}
             <div className="top">
-              <span className="left">{medicine.medicineName}</span>
-              <span className="right">₹{medicine.price}</span>
+              <div className="left">
+              <div>{medicine.medicineName}</div>
+              <span>₹{medicine.price}</span>
+              <span>Q :{medicine.cartQuantity}</span>
+              </div>
+              <div className="right">
+               <button className="btn" onClick={()=>removeMedicine(medicine.id)}>Remove</button>
             </div>
-            <div className="bottom">
-              {medicine.dsc}
             </div>
+         
           </li>
         ))}
       </ul>
@@ -27,7 +31,7 @@ function Modal(props) {
       </div>
       <div className="buttons">
         <button className="closeBtn" onClick={()=>props.onClose()}>Colse</button>
-        <button className="orderBtn">Order</button>
+        <button className="orderBtn" onClick={()=>orderPlaced()}>Order</button>
       </div>
     </div>
   );

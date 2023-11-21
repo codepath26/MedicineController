@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./Input.css";
+import { useDisplayMedicines } from "../../Context/DisplayMedicineContext";
 
 function Input(props) {
   const [medicineName, setMedicineName] = useState("");
   const [dsc, setDsc] = useState("");
   const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(0);
+  const {MedicineToStore} = useDisplayMedicines();
 
   const addData = (e) => {
     e.preventDefault();
@@ -13,9 +16,21 @@ function Input(props) {
       medicineName: medicineName,
       dsc: dsc,
       price: price,
-      amount: 1,
+      quantity : quantity,
     };
-    props.addMedicine(medicine);
+    MedicineToStore(medicine);
+  };
+
+  // Clear the Defult value of the price and quatity input field
+  const clearValue = (e) => {
+    if (e.target.value === "0") {
+      if (e.target.id === "quantity") {
+        setQuantity("");
+      }
+      if (e.target.id === "price") {
+        setPrice("");
+      }
+    }
   };
   return (
     <div className="form-container">
@@ -47,10 +62,23 @@ function Input(props) {
           <input
             type="number"
             value={price}
+            onFocus={clearValue}
             onChange={(e) => {
               setPrice(e.target.value);
             }}
             id="price"
+          />
+        </div>
+        <div className="input-field">
+          <label htmlFor="quantity">Quantity</label>
+          <input
+            type="number"
+            value={quantity}
+            onFocus={clearValue}
+            onChange={(e) => {
+              setQuantity(e.target.value);
+            }}
+            id="quantity"
           />
         </div>
         <button type="submit">Add Medicine</button>
