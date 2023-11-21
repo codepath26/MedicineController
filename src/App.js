@@ -1,13 +1,13 @@
 import Input from "./Components/Input/Input";
 
 import DisplayMedicines from "./Components/DisplayMedicine/DisplayMedicines";
-import MedicineProvider from "./Context/MedicineContext";
 import { useState } from "react";
 import CartButton from "./Components/CartButton/CartButton";
 import Cart from "./Components/Cart/Cart";
+import MedicinesProvider from "./Context/DisplayMedicineContext";
+import CartMedicinesProvider from "./Context/CartMedicinesContext";
 
 function App() {
-  const [medicines, setMedicines] = useState([]);
   const [showCart , setShowCart] = useState(false);
 
   const onShowCart = ()=>{
@@ -17,19 +17,15 @@ function App() {
     setShowCart(false);
   }
 
-  const addMedicine = (medicine) => {
-    setMedicines((prevMedicines) => {
-      return prevMedicines.concat(medicine);
-    });
-  };
-
   return (
-    <MedicineProvider>
+    <CartMedicinesProvider>
+      <MedicinesProvider>
       <CartButton onShowCart={onShowCart} />
       {showCart && <Cart onClose={onHideCart} />}
-      <Input addMedicine={addMedicine} />
-      <DisplayMedicines medicines={medicines} />
-    </MedicineProvider>
+      <Input />
+      <DisplayMedicines />
+      </MedicinesProvider>
+    </CartMedicinesProvider>
   );
 }
 

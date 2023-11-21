@@ -65,3 +65,12 @@
   border: none;
   color: white;
 }
+.btn{
+  padding: 10px 15px;
+  background-color: orangered;
+  color: white;
+  border: none;
+}
+.btn:hover{
+  background-color: rgb(216, 115, 78);
+}
