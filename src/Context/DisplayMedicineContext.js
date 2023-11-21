@@ -5,7 +5,8 @@ import { useMedicine } from "./CartMedicinesContext";
 const MedicinesContext = createContext({
   medicineList : [],
   addToCart : (medicine)=>{},
-  MedicineToStore:(medicine)=>{}
+  MedicineToStore:(medicine)=>{},
+  removeMedi : (id)=>{},
 });
 
 const MedicinesProvider = ({children})=>{
@@ -29,8 +30,16 @@ const MedicinesProvider = ({children})=>{
       return prevMedi.concat(medicine);
     })
   }
+  const removeMedi =(id)=>{
+     setMedicinesList(prevMedi =>{
+      let updatedMediList = [...prevMedi];
+      return updatedMediList.filter((medicine)=>{
+        return medicine.id !== id;
+      })
+     })
+  }
   return (
-    <MedicinesContext.Provider value={{medicineList , addToCart  ,MedicineToStore}}>
+    <MedicinesContext.Provider value={{medicineList , addToCart  ,MedicineToStore ,removeMedi}}>
       {
         children
       }

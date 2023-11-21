@@ -1,5 +1,5 @@
 import Input from "./Components/Input/Input";
-
+import './App.css'
 import DisplayMedicines from "./Components/DisplayMedicine/DisplayMedicines";
 import { useState } from "react";
 import CartButton from "./Components/CartButton/CartButton";

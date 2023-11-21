@@ -1,20 +1,21 @@
 header{
   /* background-color: black; */
-  /* border:  1px solid red; */
   padding: 10px;
   height: 2rem;
   position: relative;
 }
 header div{
+  /* border:  1px solid red; */
   position: absolute;
   top: 20px;
-  right: 310px;
+  right: 20px;
 }
 .carBtn{
   padding: 10px;
   background-color: purple;
   color: white;
   border: none;
+  font-size: 2rem;
   border-radius: 5px;
   
 }

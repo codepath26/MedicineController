@@ -33,7 +33,9 @@ function Input(props) {
     }
   };
   return (
-    <div className="form-container">
+    <div className="main-container">
+      <h1 className="title">ADD MEDICINES TO STORE</h1>
+      <div className="form-container">
       <form onSubmit={addData} className="form">
         <div className="input-field">
           <label htmlFor="name">Medicine</label>
@@ -83,6 +85,7 @@ function Input(props) {
         </div>
         <button type="submit">Add Medicine</button>
       </form>
+      </div>
     </div>
   );
 }
